@@ -43,6 +43,8 @@ import org.eclipse.swt.widgets.TreeItem;
 
 public class Start extends ApplicationWindow {
 
+	final static String SETTINGS_CONF = "torrenttool.conf"; 
+	
 	final static String PASSWORD_ICON = "icons/pw.gif";
 	final static String UNDERSCORE_ICON = "icons/underscore.png";
 	final static String GEAR_ICON = "icons/Gear-icon.png";
@@ -766,7 +768,7 @@ public class Start extends ApplicationWindow {
 	 */
 	private void loadSettings() {
 		try {
-			File file = new File("settings.ser");
+			File file = new File(SETTINGS_CONF);
 			ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
 			Object[] o = (Object[]) in.readObject();
 
@@ -847,7 +849,7 @@ public class Start extends ApplicationWindow {
 			o[3] = settings.getBasePath().getText();
 			o[4] = trackers.getList().getItems();
 
-			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("settings.ser"));
+			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(SETTINGS_CONF));
 			out.writeObject(o);
 			out.flush();
 			out.close();
